@@ -388,7 +388,7 @@ along with this program.  If not, see < http://www.gnu.org/licenses/ >.
                                     }
 
                                     if (rc || typeof(rc) == "undefined") {
-                                        tags = addTag(this, newTag, tags, opts.sorttags);
+                                        tags = addTag(this, newTag, tags, opts.sorttags, opts.tagItemClassName);
                                         if (opts.updateURL !== '' && opts.autoUpdate) {
                                             saveTags(tags, opts, tagContainer.id);
                                         }
@@ -446,7 +446,7 @@ along with this program.  If not, see < http://www.gnu.org/licenses/ >.
                                             rc = opts.onAdd.call(this, newTag);
                                         }
                                         if (rc || typeof(rc) == "undefined") {
-                                            tags = addTag(this, newTag, tags, opts.sortTags);
+                                            tags = addTag(this, newTag, tags, opts.sortTags, opts.tagItemClassName);
                                             if (opts.updateURL !== '' && opts.autoUpdate) {
                                                 saveTags(tags, opts, tagContainer.id);
                                             }
@@ -486,7 +486,7 @@ along with this program.  If not, see < http://www.gnu.org/licenses/ >.
                                             opts.onAdd.call(this, newTag);
                                         }
                                         if (rc || typeof(rc) == "undefined") {
-                                            tags = addTag(this, $.trim(ui.item.value), tags, opts.sortTags);
+                                            tags = addTag(this, $.trim(ui.item.value), tags, opts.sortTags, opts.tagItemClassName);
                                             if (opts.updateURL !== '' && opts.autoUpdate) {
                                                 saveTags(tags, opts, tagContainer.id);
                                             }
@@ -583,10 +583,10 @@ along with this program.  If not, see < http://www.gnu.org/licenses/ >.
     }
 
     // adds a tag to the tag box and the assignedTags list
-    function addTag(tagField, value, tags, sort) {
+    function addTag(tagField, value, tags, sort, tagItemClassName) {
         tags.assignedTags.push(value);
         tags.availableTags = removeTagFromList(value, tags.availableTags);
-        $("<li />").addClass("tagItem").text(value).insertBefore($(tagField).parent());
+        $("<li />").addClass("tagItem").addClass(tagItemClassName).text(value).insertBefore($(tagField).parent());
 
         if (sort) {
             tags = sortTags(tags);
@@ -656,10 +656,10 @@ along with this program.  If not, see < http://www.gnu.org/licenses/ >.
     function addAssignedTags(opts, tags, inputField, tagContainer) {
         $(tags.assignedTags).each(function (i, e) {
             if (opts.allowEdit) {
-                $("<li />").addClass("tagItem").text(e).insertBefore($(inputField).parent());
+                $("<li />").addClass("tagItem").addClass(opts.tagItemClassName).text(e).insertBefore($(inputField).parent());
             }
             else {
-                $("<li />").addClass("tagItem").css("cursor", "default").text(e).appendTo($(tagContainer));
+                $("<li />").addClass("tagItem").addClass(opts.tagItemClassName).css("cursor", "default").text(e).appendTo($(tagContainer));
             }
             tags.availableTags = removeTagFromList(e, tags.availableTags);
         });
