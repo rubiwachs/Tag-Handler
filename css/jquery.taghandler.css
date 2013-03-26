@@ -13,6 +13,9 @@
     margin: 3px 3px 3px 0;
     white-space: nowrap;
 }
+.tagHandler ul.tagHandlerContainer li.tagItem {
+	cursor: url('../images/tag_remove.cur'), pointer;
+}
 
 .tagHandler ul.tagHandlerContainer input.tagInputField {
     width: inherit;
@@ -24,7 +27,7 @@
     right: -24px;
     top: 12px;
     display: none;
-    background: url('../img/loader.gif') center center no-repeat;
+    background: url('../images/loader.gif') center center no-repeat;
     width: 16px;
     height: 18px;
     cursor: default;
@@ -33,7 +36,7 @@
     position: absolute;
     right: -24px;
     top: 14px;
-    background: url('../img/tag_update.png') center center no-repeat;
+    background: url('../images/tag_update.png') center center no-repeat;
     width: 16px;
     height: 16px;
     cursor: pointer;
